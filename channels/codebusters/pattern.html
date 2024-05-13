@@ -139,7 +139,7 @@
     '<span style="color:red;">Incorrect! ❌ Try again.</span>',
     '<span style="color:red;">Still wrong! ❌ Try again.</span>',
     '<span style="color:red;">Nope! ❌ Try again.</span>',
-    `<span style="color:red;">RIP ❌ Solution: ${currentWords}</span>`
+    '<span style="color:red;">RIP ❌</span>'
     ];
     document.getElementById('result').innerHTML = `<span style="color:black;">${count} remaining...</span>`;
     // Check if the deciphered word matches the original word
@@ -165,10 +165,12 @@
             document.getElementById('result').innerHTML = `<span style="color:black;">${count} remaining...</span>`;
         }
       } else {
+        if (fails < 3) {
         document.getElementById('result').innerHTML = failMessages[fails];
         fails++;
         document.getElementById('decipherInput').reset();
-        if (fails >= 4) {
+        } else {
+            document.getElementById('result').innerHTML = `<span style="color:red;">RIP ❌ Solution: ${currentWords}</span>`;
             setTimeout(() => {
                 // Generate a new word
                 currentWords = generateNewWord();
