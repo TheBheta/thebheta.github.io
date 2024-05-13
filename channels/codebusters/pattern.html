@@ -165,21 +165,22 @@
             document.getElementById('result').innerHTML = `<span style="color:black;">${count} remaining...</span>`;
         }
       } else {
-        if (fails < 3) {
+        if (fails < 3 && fails >= 0) {
         document.getElementById('result').innerHTML = failMessages[fails];
         fails++;
         document.getElementById('decipherInput').reset();
-        } else {
-            document.getElementById('result').innerHTML = `<span style="color:red;">RIP ❌ Solution: ${currentWords}</span>`;
-            setTimeout(() => {
-                // Generate a new word
-                currentWords = generateNewWord();
-                document.getElementById('decipherInput').value = '';
-                count = currentWords.length;
-                foundWords = [];
-                document.getElementById('result').innerHTML = `<span style="color:black;">${count} remaining...</span>`;
-                fails = 0;
-            }, 1500);
+        } if (fails >= 3) {
+          fails = -1;
+          document.getElementById('result').innerHTML = `<span style="color:red;">RIP ❌ Solution: ${currentWords}</span>`;
+          setTimeout(() => {
+              // Generate a new word
+              currentWords = generateNewWord();
+              document.getElementById('decipherInput').value = '';
+              count = currentWords.length;
+              foundWords = [];
+              document.getElementById('result').innerHTML = `<span style="color:black;">${count} remaining...</span>`;
+              fails = 0;
+          }, 1500);
         }
       }
     }
