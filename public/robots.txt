@@ -1,3 +1,16 @@
 # https://www.robotstxt.org/robotstxt.html
+#
+# This site has moved to https://cgovind.com. The old pages are still on disk
+# here, but they are copies of pages that now live on the new site, so leaving
+# them crawlable means competing with cgovind.com using its own content.
+#
+# **The root is deliberately still allowed.** index.html is the redirect, and a
+# crawler that cannot fetch it cannot see the redirect either - blocking it
+# would freeze the old page in the index rather than hand its standing over,
+# which is the exact opposite of the point.
 User-agent: *
-Disallow:
+Disallow: /home/
+Disallow: /wii/
+Disallow: /games/
+Disallow: /projects/
+Disallow: /images/
